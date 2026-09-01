@@ -5,11 +5,6 @@ import viteLogo from '../assets/vite.svg'
 import vueLogo from '../assets/vue.svg'
 
 const count = ref(0)
-
-// ElMessage 由 unplugin-auto-import 自动导入，无需手动 import
-const showMessage = () => {
-  ElMessage.success('Element Plus 已成功接入！')
-}
 </script>
 
 <template>
@@ -26,10 +21,6 @@ const showMessage = () => {
     <button type="button" class="counter" @click="count++">
       Count is {{ count }}
     </button>
-    <div style="margin-top: 12px">
-      <el-button type="primary" @click="count++">Element Plus 按钮: {{ count }}</el-button>
-      <el-button type="success" @click="showMessage">调用 ElMessage</el-button>
-    </div>
   </section>
 
   <div class="ticks"></div>

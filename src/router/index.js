@@ -12,32 +12,32 @@ const backendRoutes = [
       {
         path: 'dashboard',
         component: () => import('@/views/dashboard.vue'),
-        mata: {
-          titel: '数据分析',
+        meta: {
+          title: '数据分析',
           icon: 'PieChart'
         }
       },
       {
         path: 'knowledge',
         component: () => import('@/views/knowledge.vue'),
-        mata: {
-          titel: '知识文章',
+        meta: {
+          title: '知识文章',
           icon: 'ChatLineSquare'
         }
       },
       {
         path: 'consultations',
         component: () => import('@/views/consultations.vue'),
-        mata: {
-          titel: '咨询记录',
+        meta: {
+          title: '咨询记录',
           icon: 'Message'
         }
       },
       {
         path: 'emotional',
         component: () => import('@/views/emotional.vue'),
-        mata: {
-          titel: '情绪日志',
+        meta: {
+          title: '情绪日志',
           icon: 'User'
         }
       }

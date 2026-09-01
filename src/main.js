@@ -11,11 +11,18 @@ import 'element-plus/dist/index.css'
 import router from './router'
 // 引入 Element Plus 图标库
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-// 创建 Vue 应用实例并挂载到 #app 元素上
+// 引入 Pinia 状态管理库
+import { createPinia } from 'pinia'
+// 创建 Vue 应用实例
 const app = createApp(App)
+// 创建 Pinia 实例
+const pinia = createPinia()
+
+// 注册 Pinia 状态管理库
+app.use(pinia)
 // 注册 Element Plus 图标库
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
-// 挂载到 #app 元素上
+// 注册 Element Plus 与路由，挂载到 #app 元素上
 app.use(ElementPlus).use(router).mount('#app')
