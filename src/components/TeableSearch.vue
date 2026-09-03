@@ -8,10 +8,10 @@
                             <template v-if = "item.comp === 'select'">
                                 <el-option label="全部" value=""/>
                                     <el-option 
-                                                v-for="opt in item.options"
-                                                :key="opt.value"
-                                                :label="opt.label"
-                                                :value="opt.value"/>
+                                     v-for="opt in item.options"
+                                      :key="opt.value"
+                                      :label="opt.label"
+                                      :value="opt.value"/>                               
                    </template>
                 </component>
             </el-form-item>   

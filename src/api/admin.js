@@ -29,3 +29,24 @@ export function uploadFile(file, businessInfo){
     }
   )
 }
+// 创建知识文章
+export function createArticle(data){
+    return request.post('/knowledge/article', data)
+}
+
+//获取知识文章详情
+export function getArticleDetail(id){
+  return request.get(`/knowledge/article/${id}`)
+}
+// 更新知识文章
+export function updateArticle(id,data){
+    return request.put(`/knowledge/article/${id}`, data)
+}
+//更新文章状态
+export function changeArticleStatus(id,data){
+    return request.put(`/knowledge/article/${id}/status`, data)
+}
+// 删除知识文章
+export function deleteArticle(id){
+    return request.delete(`/knowledge/article/${id}`)
+}
