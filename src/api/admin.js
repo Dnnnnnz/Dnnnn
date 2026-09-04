@@ -50,3 +50,15 @@ export function changeArticleStatus(id,data){
 export function deleteArticle(id){
     return request.delete(`/knowledge/article/${id}`)
 }
+// 分页获取咨询会话
+export function getConsultationPage(params){
+  return request.get('/psychological-chat/sessions', { params })
+}
+// 获取咨询会话详情
+export function getConsultationDetail(sessionId){
+  return request.get(`/psychological-chat/sessions/${sessionId}/messages`)
+}
+// 分页获取情绪日志
+export function getEmotionalPage(params){
+  return request.get('/emotion-diary/admin/page', { params })
+}

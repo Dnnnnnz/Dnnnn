@@ -82,7 +82,6 @@ const pagination = reactive({
 })
 // 处理搜索事件
 const handleSearch = async(formData) => {
-  console.log('查询参数', formData)
 
   const params = {
     ...pagination,
