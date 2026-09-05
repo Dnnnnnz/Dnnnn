@@ -27,8 +27,10 @@
         import { useAdminStore } from '@/stores/admin'
 
         const handleCommand = (command) => {
-            console.log(command)
             if (command === 'logout') {
+                localStorage.removeItem('token')
+                localStorage.removeItem('userInfo')
+                window.location.href = '/auth/login'
             }
         }
         const handleCollapse = () => {

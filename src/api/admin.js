@@ -62,3 +62,11 @@ export function getConsultationDetail(sessionId){
 export function getEmotionalPage(params){
   return request.get('/emotion-diary/admin/page', { params })
 }
+// 删除情绪日志
+export function deleteEmotional(id){
+  return request.delete(`/emotion-diary/admin/${id}`)
+}
+//获取综合数据分析
+export function getAnalyticOverview(){
+  return request.get('/data-analytics/overview')
+}
