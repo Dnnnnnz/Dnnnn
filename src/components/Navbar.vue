@@ -4,14 +4,14 @@
             <el-button @click="handleCollapse">
                 <el-icon><Expand /></el-icon>
             </el-button>
-            <p class="page-title">导航栏</p>
+            <p class="page-title">{{ route.meta.title }}</p>
         </div>
 
         <div class="flex-box">
                 <el-dropdown @command="handleCommand">
                     <div class="flex-box">
                         <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
-                        <p class="user-name">用户</p>
+                        <p class="user-name">{{ username }}</p>
                     <el-icon><ArrowDown /></el-icon>
                    </div> 
                    <template #dropdown>
@@ -23,22 +23,41 @@
         </div>
     </div>
 </template>
-        <script setup>
-        import { useAdminStore } from '@/stores/admin'
+<script setup>
+import { useAdminStore } from '@/stores/admin'
+import { useRouter, useRoute } from 'vue-router'
+import { ElMessageBox } from 'element-plus'
+import { Expand, ArrowDown } from '@element-plus/icons-vue'
+import { logout } from '@/api/admin'
 
-        const handleCommand = (command) => {
-            if (command === 'logout') {
-                localStorage.removeItem('token')
-                localStorage.removeItem('userInfo')
-                window.location.href = '/auth/login'
-            }
-        }
-        const handleCollapse = () => {
-            useAdminStore().toggleCollapsed()
-        }
-        
-        const adminStore = useAdminStore()
-        </script>
+const router = useRouter()
+const route = useRoute()
+const adminStore = useAdminStore()
+
+// 从 localStorage 读取用户信息，没有则兜底显示"用户"
+const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}')
+const username = userInfo.username || userInfo.nickname || userInfo.name || '用户'
+
+const handleCommand = (command) => {
+  if (command === 'logout') {
+    ElMessageBox.confirm('确定退出登录吗？', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }).then(() => {
+      logout().then(() => {
+        localStorage.removeItem('token')
+        localStorage.removeItem('userInfo')
+        router.push('/auth/login')
+      })
+    })
+  }
+}
+
+const handleCollapse = () => {
+  adminStore.toggleCollapsed()
+}
+</script>
 <style lang="scss" scoped>
 .navbar {
     height: 100%;

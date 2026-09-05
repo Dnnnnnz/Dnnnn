@@ -70,3 +70,7 @@ export function deleteEmotional(id){
 export function getAnalyticOverview(){
   return request.get('/data-analytics/overview')
 }
+//用户退出登录
+export function logout(){
+  return request.post('/user/logout')
+}
