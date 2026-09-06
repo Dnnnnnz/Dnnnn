@@ -118,10 +118,10 @@ router.beforeEach((to, from, next) => {
       } else {
         next('/back/dashboard')
       }
-    } else {
+    } else if (userInfo.userType === 1){
       // 非管理员（普通用户）：访问后台路由跳转登录页，其他路由放行
-      if (to.path.startsWith('/back')) {
-        next('/auth/login')
+      if (to.path.startsWith('/back') || to.path.startsWith('/auth')) {
+        next('/')
       } else {
         next()
       }

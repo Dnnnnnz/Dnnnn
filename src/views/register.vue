@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="form-container">
-        <el-form label-position="top" :model="formData" :rules="rules" class="form-container" ref="submitFormRef">
+        <el-form label-position="top" :model="formData" :rules="rules" ref="submitFormRef">
                 <el-form-item label="用户名" prop="username">
                     <el-input v-model="formData.username" placeholder="请输入用户名" size="large"></el-input>
                 </el-form-item>
@@ -36,8 +36,12 @@
 </template>
 <script setup>
 import { ref, reactive } from 'vue'
+import { register } from '@/api/frontend'
+import { ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
-const formData = ref({
+const formData = reactive({
     "username": "",
     "email": "",
     "nickname": "",
@@ -68,6 +72,18 @@ const submitFormRef = ref(null)
 const submitForm = async (formEl) => {
     if(!formEl) return
     formEl.validate(async (valid) => {
+        register(formData).then(({data}) => {
+            if(!data){
+                ElMessage.success('注册成功')
+                //注册成功后，跳转到登录页
+                router.push('/auth/login')
+
+            }
+            if(data.code === "BUSI_SUCCESS") {
+                ElMessage.error(data.message)
+            } 
+        })
+
     });
 }
 
